@@ -1,18 +1,7 @@
-# -- THEME AUTO-WRITTEN
-#include "/usr/share/themes/MistDark/gtk-2.0/gtkrc"
-#include "/usr/share/themes/dmist/gtk-2.0/gtkrc"
-#include "/home/seb/.themes/industrialwhiteblack/gtk-2.0/gtkrc"
-#include "/usr/share/themes/royalty_seb/gtk-2.0/gtkrc"
-include "/usr/share/themes/grey_shade/gtk-2.0/gtkrc"
+include ".themes/grey_shade/gtk-2.0/gtkrc"
 
-#gtk-icon-theme-name="ACYL_0.8.1"
-#gtk-icon-theme-name="allblack"
 gtk-icon-theme-name="ACYL_Icon_Theme_0.8.2"
 
-
-#gtk-cursor-theme-name="/usr/share/icons/ATER-yellow"
-gtk-cursor-theme-name="/usr/share/icons/ATER-mouse-blue"
+gtk-cursor-theme-name="/usr/share/icons/ATER-mouse-blue" # needed ?
 
 gtk-font-name="terminus 9"
-
-# -- THEME AUTO-WRITTEN
