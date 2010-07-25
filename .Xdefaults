@@ -1,0 +1,57 @@
+#Xft.dpi: 96
+#*font: terminus
+#*faceName:Bitstream Vera Sans Mono:pixelsize=11
+Xft.antialias:  false
+
+Xcursor.theme: DMZ-AA
+
+!---------------!
+!-> Terminals <-!
+!---------------!
+
+
+!---!! urxvt !!---!
+
+urxvt*termName: rxvt
+urxvt*internalBorder: 0
+urxvt*background: Black
+urxvt*scrollBar: false
+urxvt*saveLines: 2000
+urxvt.urgentOnBell: True	#false alarm on unfocus
+
+#urxvt*fade: 20
+urxvt*transparent: false
+#urxvt*shading: 50
+
+urxvt*matcher.button: 1					/* match left-mouse-button */
+urxvt*urlLauncher: opera               	/* launch web browser on matched text */
+
+urxvt*background: #030303
+urxvt*foreground: #cfcfcf
+
+# color scheme #
+
+#include "/home/seb/.Xdefaults_dwmrob"
+!#include "/home/seb/.Xdefaults_jwr_dark"
+!#include "/home/seb/.Xdefaults_winter1"
+!#include "/home/seb/.Xdefaults_thayer"
+!#include "/home/seb/.Xdefaults_milomouse_mod"
+!#include "/home/seb/.Xdefaults_grey1"
+!#include "/home/seb/.Xdefaults_2"
+
+
+urxvt*font:                     xft:terminus:pixelsize=11  
+urxvt*boldFont:                 xft:terminus:pixelsize=13
+
+#urxvt*font:                     xft:ProggyClean.pcf:pixelsize=11  
+#urxvt*boldFont:                 xft:proggy clean:pixelsize=11 
+#urxvt*font:                     xft:profont:pixelsize=11  
+#urxvt*boldFont:                 xft:profont:pixelsize=11 
+#urxvt*font:			xft:Monaco:pixelsize=10
+#urxvt*font: -windows-proggytiny-medium-r-normal-*-*-80-*-*-c-*-iso8859-1
+#urxvt*font:			Monaco:pixelsize=11
+#urxvt*font:			-xos4-Monaco-medium-r-normal-*-14-*-*-*-*-*-*-*
+#urxvt*font: -windows-proggy clean-medium-r-normal-*-*-80-*-*-c-*-iso8859-1
+#urxvt*boldFont: -windows-proggy clean-medium-r-normal-*-*-80-*-*-c-*-iso8859-1
+
+
