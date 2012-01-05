@@ -1,0 +1,136 @@
+# ------------------------------
+# bbkeys.rc - bblean 1.17
+
+# This if uncommented disables the echo of bbkeys commands on the toolbar
+# -nolabel
+
+# This if uncommented shows a warning box if a hotkey could not be set
+# (like when it is already in use by another program)
+# -debug
+
+# Invoke menu:
+#KeyToGrab(LWIN),        WithModifier(),         WithAction(ShowMenu -key root)
+#KeyToGrab(RWIN),        WithModifier(),         WithAction(ShowMenu -key)
+
+# alternatively (show at mouse cursor):
+KeyToGrab(M),           WithModifier(Win+Ctrl), WithAction(ShowMenu)
+KeyToGrab(M),           WithModifier(Win+Shift),WithAction(ShowWorkspaceMenu)
+
+# Workspaces:
+KeyToGrab(1),        WithModifier(Win),      WithAction(SwitchToWorkspace 1)
+KeyToGrab(2),        WithModifier(Win),      WithAction(SwitchToWorkspace 2)
+KeyToGrab(3),        WithModifier(Win),      WithAction(SwitchToWorkspace 3)
+KeyToGrab(4),        WithModifier(Win),      WithAction(SwitchToWorkspace 4)
+KeyToGrab(5),        WithModifier(Win),      WithAction(SwitchToWorkspace 5)
+KeyToGrab(6),        WithModifier(Win),      WithAction(SwitchToWorkspace 6)
+KeyToGrab(7),        WithModifier(Win),      WithAction(SwitchToWorkspace 7)
+KeyToGrab(8),        WithModifier(Win),      WithAction(SwitchToWorkspace 8)
+KeyToGrab(9),        WithModifier(Win),      WithAction(SwitchToWorkspace 9)
+KeyToGrab(0),        WithModifier(Win),      WithAction(SwitchToWorkspace 10)
+
+KeyToGrab(1),        WithModifier(Win+Shift),      WithAction(SendWindowToWS 1)
+KeyToGrab(2),        WithModifier(Win+Shift),      WithAction(SendWindowToWS 2)
+KeyToGrab(3),        WithModifier(Win+Shift),      WithAction(SendWindowToWS 3)
+KeyToGrab(4),        WithModifier(Win+Shift),      WithAction(SendWindowToWS 4)
+KeyToGrab(5),        WithModifier(Win+Shift),      WithAction(SendWindowToWS 5)
+KeyToGrab(6),        WithModifier(Win+Shift),	   WithAction(SendWindowToWS 6)
+KeyToGrab(7),        WithModifier(Win+Shift),      WithAction(SendWindowToWS 7)
+KeyToGrab(8),        WithModifier(Win+Shift),      WithAction(SendWindowToWS 8)
+KeyToGrab(9),        WithModifier(Win+Shift),      WithAction(SendWindowToWS 9)
+KeyToGrab(0),        WithModifier(Win+Shift),      WithAction(SendWindowToWS 10)
+
+#KeyToGrab(Left),        WithModifier(Win),      WithAction(PrevWorkspace)
+#KeyToGrab(Right),       WithModifier(Win),      WithAction(NextWorkspace)
+#KeyToGrab(Left),        WithModifier(Win+Ctrl), WithAction(PrevWindow)
+#KeyToGrab(Right),       WithModifier(Win+Ctrl), WithAction(NextWindow)
+#KeyToGrab(Up),          WithModifier(Win+Ctrl), WithAction(PrevWindowAllWorkspaces)
+#KeyToGrab(Down),        WithModifier(Win+Ctrl), WithAction(NextWindowAllWorkspaces)
+#KeyToGrab(Up),          WithModifier(Win),      WithAction(MoveWindowLeft)
+#KeyToGrab(Down),        WithModifier(Win),      WithAction(MoveWindowRight)
+KeyToGrab(G),           WithModifier(Win),      WithAction(GatherWindows)
+
+# Windows:
+KeyToGrab(X),           WithModifier(Win),      WithAction(MaximizeWindow)
+KeyToGrab(V),           WithModifier(Win),      WithAction(MaximizeVertical)
+#KeyToGrab(H),           WithModifier(Win),      WithAction(MaximizeHorizontal)
+KeyToGrab(Y),           WithModifier(Win),      WithAction(RestoreWindow)
+KeyToGrab(N),           WithModifier(Win),      WithAction(MinimizeWindow)
+KeyToGrab(D),           WithModifier(Win),      WithAction(MinimizeAll)
+KeyToGrab(PageUp),      WithModifier(Win),      WithAction(RaiseWindow)
+KeyToGrab(PageDown),    WithModifier(Win),      WithAction(LowerWindow)
+KeyToGrab(End),         WithModifier(Win),      WithAction(ShadeWindow)
+KeyToGrab(Insert),      WithModifier(Win),      WithAction(StickWindow)
+KeyToGrab(Q),      		WithModifier(Win+Shift),WithAction(CloseWindow)
+
+# Blackbox
+KeyToGrab(R),           WithModifier(Win+Ctrl), WithAction(Reconfigure)
+KeyToGrab(R),           WithModifier(Win+Alt),  WithAction(Restart)
+KeyToGrab(Q),           WithModifier(Win),      WithAction(Quit)
+KeyToGrab(M),           WithModifier(Win),      WithAction(EditMenu)
+KeyToGrab(P),           WithModifier(Win),      WithAction(EditPlugins)
+KeyToGrab(S),           WithModifier(Win),      WithAction(EditStyle)
+KeyToGrab(S),           WithModifier(Win+Ctrl), WithAction(AboutStyle)
+KeyToGrab(P),           WithModifier(Win+Ctrl), WithAction(TogglePlugins)
+
+# System
+KeyToGrab(R),           WithModifier(Win),      WithAction(Run)
+#KeyToGrab(F10),         WithModifier(Win),      WithAction(Logoff)
+#KeyToGrab(F11),         WithModifier(Win),      WithAction(Reboot)
+#KeyToGrab(F12),         WithModifier(Win+Alt),  WithAction(Suspend)
+#KeyToGrab(F12),         WithModifier(Win+Ctrl), WithAction(Hibernate)
+#KeyToGrab(F12),         WithModifier(Win),      WithAction(Shutdown)
+KeyToGrab(Spacebar),    WithModifier(Win),      WithAction(LockWorkstation)
+
+# Extern commands:
+KeyToGrab(E),           WithModifier(Win),      WithAction(Exec explorer.exe /e,c:\)
+KeyToGrab(Pause),       WithModifier(Win),      WithAction(Exec control.exe sysdm.cpl)
+KeyToGrab(Home),        WithModifier(Win),      WithAction(Exec docs\bblean.htm)
+
+# BroadcastMessage example (toggles bbLeanSkin, uncomment to use)
+! KeyToGrab(L), WithModifier(Win), WithAction(exec @BBCfg.plugin.load bbLeanSkin)
+KeyToGrab(B), WithModifier(Win), WithAction(exec @BBCfg.plugin.load bbLeanBar-mod)
+
+KeyToGrab(T), WithModifier(Ctrl+Alt), WithAction(exec @BBCfg.plugin.load bbDynamicTiling)
+
+# bbDynamicTiling
+KeyToGrab(H), WithModifier(Win), WithAction(exec @bbDynamicTiling.focus.left)
+KeyToGrab(J), WithModifier(Win), WithAction(exec @bbDynamicTiling.focus.down)
+KeyToGrab(K), WithModifier(Win), WithAction(exec @bbDynamicTiling.focus.up)
+KeyToGrab(L), WithModifier(Win), WithAction(exec @bbDynamicTiling.focus.right)
+KeyToGrab(H), WithModifier(Alt), WithAction(exec @bbDynamicTiling.focus.container.left)
+KeyToGrab(J), WithModifier(Alt), WithAction(exec @bbDynamicTiling.focus.container.down)
+KeyToGrab(K), WithModifier(Alt), WithAction(exec @bbDynamicTiling.focus.container.up)
+KeyToGrab(L), WithModifier(Alt), WithAction(exec @bbDynamicTiling.focus.container.right)
+
+KeyToGrab(H), WithModifier(Win+Shift), WithAction(exec @bbDynamicTiling.move.left)
+KeyToGrab(J), WithModifier(Win+Shift), WithAction(exec @bbDynamicTiling.move.down)
+KeyToGrab(K), WithModifier(Win+Shift), WithAction(exec @bbDynamicTiling.move.up)
+KeyToGrab(L), WithModifier(Win+Shift), WithAction(exec @bbDynamicTiling.move.right)
+KeyToGrab(H), WithModifier(Alt+Shift), WithAction(exec @bbDynamicTiling.move.container.left)
+KeyToGrab(J), WithModifier(Alt+Shift), WithAction(exec @bbDynamicTiling.move.container.down)
+KeyToGrab(K), WithModifier(Alt+Shift), WithAction(exec @bbDynamicTiling.move.container.up)
+KeyToGrab(L), WithModifier(Alt+Shift), WithAction(exec @bbDynamicTiling.move.container.right)
+
+KeyToGrab(H), WithModifier(Win+Ctrl), WithAction(exec @bbDynamicTiling.expand.left)
+KeyToGrab(J), WithModifier(Win+Ctrl), WithAction(exec @bbDynamicTiling.expand.down)
+KeyToGrab(K), WithModifier(Win+Ctrl), WithAction(exec @bbDynamicTiling.expand.up)
+KeyToGrab(L), WithModifier(Win+Ctrl), WithAction(exec @bbDynamicTiling.expand.right)
+
+KeyToGrab(H), WithModifier(Win+Alt), WithAction(exec @bbDynamicTiling.resize.left)
+KeyToGrab(J), WithModifier(Win+Alt), WithAction(exec @bbDynamicTiling.resize.down)
+KeyToGrab(K), WithModifier(Win+Alt), WithAction(exec @bbDynamicTiling.resize.up)
+KeyToGrab(L), WithModifier(Win+Alt), WithAction(exec @bbDynamicTiling.resize.right)
+
+KeyToGrab(F), WithModifier(Win), WithAction(exec @bbDynamicTiling.fullscreen)
+KeyToGrab(F), WithModifier(Win+Shift), WithAction(exec @bbDynamicTiling.float)
+
+# Shortcuts
+KeyToGrab(Enter),          WithModifier(Win),      WithAction(Exec C:\msys\1.0\msys.bat)
+KeyToGrab(F2),          WithModifier(Win),      WithAction(Exec C:\msys\1.0\irssi.bat)
+#KeyToGrab(F1),          WithModifier(Win),      WithAction(Exec C:\msys\1.0\msys.bat)
+KeyToGrab(F4),          WithModifier(Win),      WithAction(Exec C:\Program Files\ttcalc-portable-0.9.2\ttcalcp.exe)
+KeyToGrab(F3),          WithModifier(Win),      WithAction(Exec "C:\Program Files\zabkat\xplorer2_lite\xplorer2_lite.exe")
+#KeyToGrab(F3),          WithModifier(Win),      WithAction(Exec C:\Program Files\Q-Dir\Q-dir.exe)
+KeyToGrab(F5),          WithModifier(Win),      WithAction(Exec "C:\Documents and Settings\Seb\My Documents\irssi\irssi.cmd")
+KeyToGrab(F6),          WithModifier(Win),      WithAction(Exec C:\foobar2000\foobar2000.exe)
+KeyToGrab(F7),          WithModifier(Win),      WithAction(Exec C:\Program Files\Opera\opera.exe)
