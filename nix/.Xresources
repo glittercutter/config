@@ -1,0 +1,15 @@
+! To save run xrdb -all ~/.Xresources
+
+URxvt*font: xft:Dina: pixelsize=11
+URxvt*xftAntialias: false
+URxvt*scrollBar: off
+URxvt*background: #121212
+URxvt*foreground: #e6e6e6
+
+Xft.antialias: false
+Xft.hinting: false
+Xcursor.theme: Vanilla-DMZ-AA
+Xcursor.size: 22
+
+! Colorscheme
+#include ".Xresources_bichrome_red"

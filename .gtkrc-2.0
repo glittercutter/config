@@ -1,7 +1,0 @@
-include ".themes/grey_shade/gtk-2.0/gtkrc"
-
-gtk-icon-theme-name="ACYL_Icon_Theme_0.8.2"
-
-gtk-cursor-theme-name="/usr/share/icons/ATER-mouse-blue" # needed ?
-
-gtk-font-name="terminus 9"
