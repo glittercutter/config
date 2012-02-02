@@ -47,6 +47,7 @@ set noerrorbells
 set novisualbell
 set t_vb=
 set tm=500
+"set colorcolumn=80              " Color the n'th column
 filetype on                     " Enable filetype detection
 filetype indent on              " Enable filetype-specific indenting
 filetype plugin on              " Enable filetype-specific plugins
@@ -79,13 +80,6 @@ set ai                          "Auto indent
 set si                          "Smart indet
 set wrap                        "Wrap lines
 
-" => Moving around, tabs and buffers
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Map space to / (search) and c-space to ? (backwards search)
-map <space> /
-map <c-space> ?
-map <silent> <leader><cr> :noh<cr>
-
 " => NERDTree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let NERDTreeWinPos="right"
@@ -106,11 +100,23 @@ nnoremap <F3> :cnext<CR>
 map ; :
 
 " Ctrl-P toggles paste mode (disable autoindent, etc...)
-set pastetoggle=<C-P>
+"set pastetoggle=<C-P>
 
 " create new line above/below (opposite of Shift-J)
 nnoremap <C-J> o<Esc>k
 nnoremap <C-K> O<Esc>j
+
+" Fast window switching
+nnoremap <C-L> <C-W>l
+nnoremap <C-H> <C-W>h
+
+" Fast window resizing with +/- keys (horizontal); / and * keys (vertical)
+if bufwinnr(1)
+    map <kplus> <c-w>+
+    map <kminus> <c-w>-
+    map <kdivide> <c-w><
+    map <kmultiply> <c-w>>
+endif
 
 " Keep visual selection on indent
 vmap > >gv
@@ -140,4 +146,5 @@ map <F11> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set guifont=Dina:h9
 colorscheme zenburn
-"colorscheme bisqwit
+hi Normal ctermbg=none
+hi ColorColumn ctermbg=238

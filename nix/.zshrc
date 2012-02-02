@@ -50,6 +50,9 @@ alias -s gif=geeqie
 alias -s sxw=soffice
 alias -s doc=soffice
 alias -s gz='aunpack'
+alias -s xz='aunpack'
+alias -s rar='aunpack'
+alias -s zip='aunpack'
 alias -s bz2='aunpack'
 alias -s java=$EDITOR
 alias -s h=$EDITOR
@@ -58,9 +61,12 @@ alias -s cpp=$EDITOR
 alias -s txt=$EDITOR
 alias -s PKGBUILD=$EDITOR
 alias -s mpeg='mplayer'
+alias -s mpg='mplayer'
 alias -s flv='mplayer'
 alias -s avi='mplayer'
 alias -s mp4='mplayer'
+alias -s wmv='mplayer'
+alias -s pdf='zathura'
 
 # Normal aliases
 alias ls='ls --color=auto -F'
@@ -74,16 +80,17 @@ alias mkdir="mkdir -p"
 alias f='find |grep'
 alias c="clear"
 alias dir='ls -1'
-alias i='urxvt'
+alias i='urxvtc &'
 alias v='vim' 
-alias vi='vim' 
-alias iv='urxvt -e vim'
+alias vi='vim'
+alias sv='sudo vim'
+alias iv='urxvtc -e vim &'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias x='startx'
 alias fm='ranger'
-alias wifi='sudo /util/wifi_start.sh'
+alias wifi='sudo /utils/wifi.sh'
 alias aurget='cd ~/aur; aurget'
 alias pacman='sudo pacman'
 alias reboot='sudo reboot'
@@ -95,3 +102,25 @@ alias -g L='|less'
 
 # command S equivalent to command &> /dev/null &
 alias -g S='&> /dev/null &'
+
+# TTY colors
+# zenburn
+if [ "$TERM" = "linux" ]; then
+    echo -en "\e]P01E2320" #black
+    echo -en "\e]P8709080" #darkgrey
+    echo -en "\e]P1705050" #darkred
+    echo -en "\e]P9dca3a3" #red
+    echo -en "\e]P260b48a" #darkgreen
+    echo -en "\e]PAc3bf9f" #green
+    echo -en "\e]P3dfaf8f" #brown
+    echo -en "\e]PBf0dfaf" #yellow
+    echo -en "\e]P4506070" #darkblue
+    echo -en "\e]PC94bff3" #blue
+    echo -en "\e]P5dc8cc3" #darkmagenta
+    echo -en "\e]PDec93d3" #magenta
+    echo -en "\e]P68cd0d3" #darkcyan
+    echo -en "\e]PE93e0e3" #cyan
+    echo -en "\e]P7dcdccc" #lightgrey
+    echo -en "\e]PFffffff" #white
+    clear #for background artifacting
+fi
