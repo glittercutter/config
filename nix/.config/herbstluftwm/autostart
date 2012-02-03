@@ -16,12 +16,16 @@ Mod=Mod4
 hc keybind $Mod-Shift-q quit
 hc keybind $Mod-Shift-r reload
 hc keybind $Mod-Shift-c close
+
 hc keybind $Mod-Return spawn urxvtc
 hc keybind $Mod-d spawn dmenu_run -b -i -nb '#555555' -nf '#999999' -sb '#555555' -sf '#FF9999'
 
 hc keybind $Mod-Left spawn amixer set Master 5%- unmute
 hc keybind $Mod-Right spawn amixer set Master 5%+ unmute
 hc keybind $Mod-m spawn amixer set Master toggle
+
+hc keybind $Mod-Shift-comma spawn mpc prev
+hc keybind $Mod-Shift-period spawn mpc next
 
 # tags
 TAG_NAMES=( {0..9} )
