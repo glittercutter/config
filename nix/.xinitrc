@@ -14,22 +14,28 @@ fi
 # Load resources
 xrdb -merge ~/.Xresources
 
-# Remap CapsLocks to Escape
-xmodmap -e "clear lock"
-xmodmap -e "keycode 0x42 = Escape"
+# Key mapping
+xmodmap ~/.Xmodmap
 
 # Keyboard repeat
 xset r rate 150 25
 
 # Wallpaper
-fbsetbg /data/img/wall/wallpaper-972417_contrast.png
+#fbsetbg /data/img/wall/wallpaper-972417_contrast2.png
+fbsetbg /data/img/wall/113576_contrast.png
 
 # Deamon for X
 exec urxvtd -q -f -o & # stop with the server
 #exec /usr/lib/notification-daemon-1.0/notification-daemon start &
 
+# Hide cursor when mouse is idle
+exec unclutter -visible -root &
+
+exec xcompmgr -fF -D20 -I 0.15 -O 0.05 &
+
+exec conky &
+
 # WM
-#exec i3 exec notion exec wmii exec musca
 #exec fluxbox
 exec herbstluftwm
 #exec enlightenment_start

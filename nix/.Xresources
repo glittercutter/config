@@ -1,18 +1,35 @@
-! To save run xrdb -all ~/.Xresources
+! Apply settings with: xrdb -all ~/.Xresources
 
-URxvt*font: xft:Dina: pixelsize=10
-URxvt*xftAntialias: false
-URxvt*scrollBar: off
-!URxvt*background: #121212
-!URxvt*foreground: #e6e6e6
-URxvt*transparent: true
-URxvt*tintColor: #888888
+Xft.dpi:        96
+Xft.antialias:  true
+Xft.rgba:       rgb
+Xft.lcdfilter:  lcddefault
+Xft.hinting:    true
+Xft.autohint:   false
+Xft.hintstyle:  hintfull
 
-Xft.antialias: true
-Xft.hinting: false
 Xcursor.theme: Vanilla-DMZ-AA
 Xcursor.size: 22
 
-! Colorscheme
-!#include "./.colours/dark"
-#include "./.colours/zenburn"
+! URxvt
+#include "/home/glittercutter/.colours/Colorshot"
+URxvt.font:xft:Termsyn:pixelsize=12:style=Regular
+URxvt.boldFont:xft:Termsyn:pixelsize=12:style=Bold
+
+! On the fly font changing
+URxvt.keysym.C-plus: command:\033]50;xft:Termsyn:pixelsize=17,xft:IPAMonaGothic:antialias=false,xft:Symbola,xft:LastResort\007
+URxvt.keysym.C-minus: command:\033]50;xft:Termsyn:pixelsize=12,xft:IPAMonaGothic:antialias=false,xft:Symbola,xft:LastResort\007
+
+!URxvt*font: xft:Dina: pixelsize=10
+URxvt*xftAntialias: false
+
+URxvt*transparent: true
+URxvt*tintColor: #dddddd
+
+URxvt*cursorBlink:true
+URxvt*scrollBar: off
+URxvt*highlightSelection:true
+URxvt*buffered:true
+
+URxvt.urlLauncher: firefox
+URxvt.underlineURLs: true

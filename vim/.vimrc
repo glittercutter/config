@@ -1,116 +1,78 @@
+call pathogen#infect()
+call pathogen#helptags()
+
+" *** Settings ***
 set nocompatible
-
-if &t_Co > 2 || has("gui_running")
-  syntax on
-  set hlsearch
-endif
-
-function ToggleFlag(option, flag)
-  exec ('let lopt = &' . a:option)
-  if lopt =~ (".*" . a:flag . ".*")
-    exec ('set ' . a:option . '-=' . a:flag)
-  else
-    exec ('set ' . a:option . '+=' . a:flag)
-  endif
-endfun
-
-" => Settings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set hlsearch
 set scrolloff=3                 " keep at least 3 lines above/below
 set sidescrolloff=5             " keep at least 5 lines left/right
 set backspace=indent,eol,start  " backspace over all kinds of things
 set whichwrap+=<,>,h,l
-set noerrorbells                " no error bells please
 set linebreak                   " wrap at 'breakat' instead of last char
 set undolevels=200
 set updatecount=100             " switch every 100 chars
+set history=50                  " keep 50 lines of command line history
 set ttyfast                     " we have a fast terminal
 set magic                       " Enable the "magic"
-set cursorline                  " show the cursor line
-set history=50                  " keep 50 lines of command line history
-set ruler                       " show the cursor position all the time
+set noruler
 set showcmd                     " display incomplete commands
 set incsearch                   " do incremental searching
 set number                      " show line number
-set clipboard=unnamed
-set nobackup
-set noswapfile
 set lazyredraw                  " Don't redraw while executing macros 
 set so=7                        " Set 7 lines to the curors - when moving vertical..
 set wildmenu                    " Turn on WiLd menu
 set cmdheight=1                 " The commandbar height
 set hid                         " Change buffer - without saving
-set smartcase
 set showmatch                   " Show matching bracets when text indicator is over them
-set mat=1                       " How many tenths of a second to blink
 set noerrorbells
 set novisualbell
-set t_vb=
+set nobackup
+set noswapfile
 set tm=500
-"set colorcolumn=80              " Color the n'th column
+set t_Co=256
+set smartcase
+set smarttab
+set expandtab                   " Tab to space
+set shiftwidth=4
+set tabstop=4
+set lbr
+set tw=500
+set autoindent
+set smartindent
+set wrap                        " Wrap lines
+set fillchars=vert:\            " Empty (space)
+
+syntax on
 filetype on                     " Enable filetype detection
 filetype indent on              " Enable filetype-specific indenting
 filetype plugin on              " Enable filetype-specific plugins
 
-" => GUI
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set guioptions-=T               " Remove bar
-set guioptions-=b               " 
-set guioptions-=m               " 
-set guioptions-=l               " Remove scrollbar
-set guioptions-=L               " 
-set guioptions-=r               " 
-set guioptions-=b               " 
 
-function Menu() " Toggle menu bar
-    call ToggleFlag("guioptions","m")<CR>
-endfun
-
-" => Text, tab and indent related
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set expandtab                   " convert tab to space
-set shiftwidth=4
-set tabstop=4
-set smarttab
-
-set lbr
-set tw=500
-
-set ai                          "Auto indent
-set si                          "Smart indet
-set wrap                        "Wrap lines
-
-" => NERDTree
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" *** NERDTree ***
 let NERDTreeWinPos="right"
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 map <silent> <F12> :NERDTreeToggle<CR>
 
-" => Quickfix
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" *** Quickfix ***
 set errorfile="../gcc.err"
-set errorformat+=%f:%l:\ %m " for MinGW
+set errorformat+=%f:%l:\ %m     " For MinGW
 nnoremap <F1> :cf<CR>
 nnoremap <F2> :cprev<CR>
 nnoremap <F3> :cnext<CR>
 
-" => Mapping
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" *** Mapping ***
 map ; :
 
-" Ctrl-P toggles paste mode (disable autoindent, etc...)
-"set pastetoggle=<C-P>
-
-" create new line above/below (opposite of Shift-J)
+" Create new line above/below (opposite of Shift-J)
 nnoremap <C-J> o<Esc>k
 nnoremap <C-K> O<Esc>j
 
-" Fast window switching
+" Switch window
 nnoremap <C-L> <C-W>l
 nnoremap <C-H> <C-W>h
 
-" Fast window resizing with +/- keys (horizontal); / and * keys (vertical)
+" Resizing window with +/- keys (horizontal); / and * keys (vertical)
 if bufwinnr(1)
     map <kplus> <c-w>+
     map <kminus> <c-w>-
@@ -133,18 +95,49 @@ nnoremap Q @q
 " The default behavior of Y is to yank the whole line.
 nnoremap Y y$
 
-" toggle source/header
+" Toggle src/header
 map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 
 " Tired of clearing highlighted searches by searching for ÅgldsfhjkhgakjksÅh? Use this:
 nmap <silent> ,/ :nohlsearch<CR>
 
-" show attribute of text under the cursor (for colorscheme)
+" Show attribute of text under the cursor (for colorscheme)
 map <F11> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
-" => Misc
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set guifont=Dina:h9
-colorscheme zenburn
-hi Normal ctermbg=none
-hi ColorColumn ctermbg=238
+" Copy/paste to X
+"vmap <C-c> y: call system("xclip -i -selection clipboard", getreg("\""))<CR><CR>
+"nmap <C-v> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
+"imap <C-v> <Esc><C-v>a
+
+" Spell check
+map <F5> <Esc>:setlocal spell spelllang=fr<CR>
+map <F6> <Esc>:setlocal spell spelllang=en_gb<CR>
+map <F7> z=
+map <F8> <Esc>:setlocal nospell<CR>
+
+" *** Misc. ***
+function Transparent()
+    hi Normal ctermbg=none
+endfunction
+
+" Powerline
+set laststatus=2 " Always show the statusline
+let g:Powerline_symbols="unicode"
+
+" vim-indent-guide plugin
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_guide_size = 3
+let g:indent_guides_start_level = 2
+"call IndentGuidesEnable
+
+" C operator highlight
+"if exists("*CSyntaxAfter")
+    "call CSyntaxAfter()
+"endif
+"
+" C++11
+au BufNewFile,BufRead *.cpp set syntax=cpp11
+
+colorscheme colorshot
+"colorscheme zenburn
+"call Transparent()

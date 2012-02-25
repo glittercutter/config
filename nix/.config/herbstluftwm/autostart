@@ -27,6 +27,9 @@ hc keybind $Mod-m spawn amixer set Master toggle
 hc keybind $Mod-Shift-comma spawn mpc prev
 hc keybind $Mod-Shift-period spawn mpc next
 
+hc set window_gap 0
+hc pad 0 -2 -2 9 -2
+
 # tags
 TAG_NAMES=( {0..9} )
 TAG_KEYS=( {0..9} 0 )
@@ -76,15 +79,23 @@ hc keybind $Mod-Shift-j shift down
 hc keybind $Mod-Shift-k shift up
 hc keybind $Mod-Shift-l shift right
 
-# colors
-hc set frame_border_active_color '#888888'
-hc set frame_border_normal_color '#444444'
-hc set frame_bg_normal_color '#222222'
-hc set frame_bg_active_color '#444444'
-hc set frame_border_width 1
+# -- Not using frame --
+hc set always_show_frame 0
+hc set frame_bg_transparent 1
+hc set frame_border_active_color '#111111'
+hc set frame_border_normal_color '#111111'
+hc set frame_bg_active_color '#000000'
+hc set frame_bg_normal_color '#000000'
+hc set frame_border_width 0
+
+#hc set window_border_normal_color '#999999'
+#hc set window_border_active_color '#cccccc'
+hc set window_border_normal_color '#222222'
+hc set window_border_active_color '#555555'
 hc set window_border_width 1
-hc set window_border_normal_color '#999999'
-hc set window_border_active_color '#cccccc'
+
+# Hide frame on start
+hc use "1"
 
 # rules
 hc unrule -F

@@ -103,24 +103,5 @@ alias -g L='|less'
 # command S equivalent to command &> /dev/null &
 alias -g S='&> /dev/null &'
 
-# TTY colors
-# zenburn
-if [ "$TERM" = "linux" ]; then
-    echo -en "\e]P01E2320" #black
-    echo -en "\e]P8709080" #darkgrey
-    echo -en "\e]P1705050" #darkred
-    echo -en "\e]P9dca3a3" #red
-    echo -en "\e]P260b48a" #darkgreen
-    echo -en "\e]PAc3bf9f" #green
-    echo -en "\e]P3dfaf8f" #brown
-    echo -en "\e]PBf0dfaf" #yellow
-    echo -en "\e]P4506070" #darkblue
-    echo -en "\e]PC94bff3" #blue
-    echo -en "\e]P5dc8cc3" #darkmagenta
-    echo -en "\e]PDec93d3" #magenta
-    echo -en "\e]P68cd0d3" #darkcyan
-    echo -en "\e]PE93e0e3" #cyan
-    echo -en "\e]P7dcdccc" #lightgrey
-    echo -en "\e]PFffffff" #white
-    clear #for background artifacting
-fi
+# tty colour
+/home/glittercutter/.colours/Colorshot_tty
