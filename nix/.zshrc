@@ -1,43 +1,17 @@
-# Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
-
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-#ZSH_THEME="robbyrussell"
-ZSH_THEME="tonotdo_1"
-
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# Set to this to use case-sensitive completion
-# CASE_SENSITIVE="true"
-
-# Comment this out to disable weekly auto-update checks
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment following line if you want to disable colors in ls
-# DISABLE_LS_COLORS="true"
-
-# Uncomment following line if you want to disable autosetting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment following line if you want red dots to be displayed while waiting for completion
-# COMPLETION_WAITING_DOTS="true"
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git)
-
-source $ZSH/oh-my-zsh.sh
+# Oh My Zsh options
+zstyle ':omz:editor' keymap 'vi'
+zstyle ':omz:editor' dot-expansion 'yes'
+zstyle ':omz:*:*' case-sensitive 'no'
+zstyle ':omz:*:*' color 'yes'
+zstyle ':omz:terminal' auto-title 'no'
+zstyle ':omz:load' plugin 'archive' 'git'
+zstyle ':omz:prompt' theme 'sorin'
+source "$HOME/.oh-my-zsh/init.zsh"
 
 ##################################################################
-# My aliases
+# Aliases
 
-# Set up auto extension stuff
+# Auto extension
 alias -s html=$BROWSER
 alias -s org=$BROWSER
 alias -s php=$BROWSER
@@ -77,18 +51,12 @@ alias lsd='ls -ld *(-/DN)'
 alias lsa='ls -ld .*'
 alias grep="grep --color -n"
 alias mkdir="mkdir -p"
-alias f='find |grep'
-alias c="clear"
-alias dir='ls -1'
+alias f='find | grep'
 alias i='urxvtc &'
 alias v='vim' 
 alias vi='vim'
 alias sv='sudo vim'
 alias iv='urxvtc -e vim &'
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias x='startx'
 alias fm='ranger'
 alias wifi='sudo /utils/wifi.sh'
 alias aurget='cd ~/aur; aurget'

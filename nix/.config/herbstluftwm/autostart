@@ -26,6 +26,7 @@ hc keybind $Mod-m spawn amixer set Master toggle
 
 hc keybind $Mod-Shift-comma spawn mpc prev
 hc keybind $Mod-Shift-period spawn mpc next
+hc keybind $Mod-Shift-p spawn mpc toggle
 
 hc set window_gap 0
 hc pad 0 -2 -2 9 -2
