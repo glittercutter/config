@@ -13,8 +13,14 @@ sy()
     fi
 
     out="./"$path"/"${in#$HOME/}
+
+    # Create missing directory
     dir=`dirname "$out"`
     test -d "$dir" || mkdir -p "$dir"
+
+    # Strip last directory if the input itself is a directory
+    if [ -d "$out" ]; then out=${out%/*}; fi
+
     cp -r "$in" "$out"
 }
 

@@ -2,6 +2,8 @@
 
 # this is a simple config for herbstluftwm
 
+killall conky # Give it some time for it to close in the background before opening it again
+
 function hc() {
     herbstclient "$@"
 }
@@ -18,18 +20,24 @@ hc keybind $Mod-Shift-r reload
 hc keybind $Mod-Shift-c close
 
 hc keybind $Mod-Return spawn urxvtc
-hc keybind $Mod-d spawn dmenu_run -b -i -nb '#555555' -nf '#999999' -sb '#555555' -sf '#FF9999'
+hc keybind $Mod-Shift-Return spawn xterm -e bash --rcfile ~/utils/histrcfile.sh
+hc keybind $Mod-d spawn dmenu_run -b -i -nb '#1c1c1c' -nf '#989592' -sb '#1c1c1c' -sf '#b52128'  -fn "-*-tamsyn-medium-*-*-*-14-*-*-*-*-*-*-*"
+hc keybind $Mod-w spawn ~/utils/random_wall.sh
 
-hc keybind $Mod-Left spawn amixer set Master 5%- unmute
-hc keybind $Mod-Right spawn amixer set Master 5%+ unmute
+hc keybind $Mod-Left spawn amixer set Master 2%- unmute
+hc keybind $Mod-Right spawn amixer set Master 2%+ unmute
 hc keybind $Mod-m spawn amixer set Master toggle
 
 hc keybind $Mod-Shift-comma spawn mpc prev
 hc keybind $Mod-Shift-period spawn mpc next
 hc keybind $Mod-Shift-p spawn mpc toggle
+hc keybind $Mod-F12 spawn shutdown now
+hc keybind $Mod-F11 spawn reboot
+hc keybind $Mod-Escape spawn /home/glit/utils/screenoff.sh
 
-hc set window_gap 0
-hc pad 0 -2 -2 9 -2
+hc set frame_gap 0
+hc set frame_padding 0
+hc set window_gap 1
 
 # tags
 TAG_NAMES=( {0..9} )
@@ -50,6 +58,8 @@ hc keybind $Mod-r remove
 hc keybind $Mod-space cycle_layout 1
 hc keybind $Mod-u split vertical 0.5
 hc keybind $Mod-o split horizontal 0.5
+hc keybind $Mod-Shift-u split vertical 0.3
+hc keybind $Mod-Shift-o split horizontal 0.3
 hc keybind $Mod-s floating toggle
 hc keybind $Mod-f fullscreen toggle
 hc keybind $Mod-p pseudotile toggle
@@ -67,6 +77,8 @@ hc mousebind $Mod-Button2 resize
 hc mousebind $Mod-Button3 zoom
 
 # focus
+hc keybind $Mod-minus focus_monitor 0
+hc keybind $Mod-equal focus_monitor 1
 hc keybind $Mod-BackSpace   cycle_monitor
 hc keybind $Mod-Tab         cycle_all +1
 hc keybind $Mod-Shift-Tab   cycle_all -1
@@ -89,22 +101,47 @@ hc set frame_bg_active_color '#000000'
 hc set frame_bg_normal_color '#000000'
 hc set frame_border_width 0
 
-#hc set window_border_normal_color '#999999'
-#hc set window_border_active_color '#cccccc'
+hc set window_border_normal_color '#999999'
+hc set window_border_active_color '#cccccc'
 hc set window_border_normal_color '#222222'
 hc set window_border_active_color '#555555'
-hc set window_border_width 1
-
-# Hide frame on start
-hc use "1"
+hc set window_border_width 0
 
 # rules
 hc unrule -F
 
-hc rule focus=off # normally do not focus new clients
+# focus new clients
+hc rule focus=on
 
-hc rule class~'(.*[Rr]xvt.*|.*[Tt]erm|Konsole)' focus=on
-
+#hc rule class~'(.*[Rr]xvt.*|.*[Tt]erm|Konsole)' focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' pseudotile=on
 hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
-hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK)' manage=off
+hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
+hc rule instance='projectM-pulseaudio' focus=off
+hc rule instance='MPlayer' pseudotile=on
+hc rule instance='vlc' pseudotile=on
+hc rule instance='Steam' pseudotile=on
+#hc rule instance='projectM-pulseaudio' manage=off focus=off
+#hc rule class=Firefox tag=0
+
+# Set up monitor properly
+hc detect_monitors
+hc cycle_monitor
+
+# Set starting tag for monitors
+hc focus_monitor 0
+hc use 1
+hc focus_monitor 1
+hc use 0
+
+# Pad border of monitor for frame gap
+hc pad 1 -1 -1 7 -1 # Extra padding for conky
+hc pad 0 -1 -1 -1 -1
+
+exec conky &
+
+# Graphical programs can now start
+cat ~/.config/herbstluftwm/start_with_rule_ready.fifo & # Do not block next line if no reader is present
+(sleep 1 && echo "ready" > ~/.config/herbstluftwm/start_with_rule_ready.fifo)& # Delaying to make sure everyone's listening
+
+#hc use 1 # Refresh background
