@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/etc/X11/xorg.conf.d'
+let g:netrw_dirhist_2='/data/dev/project/game/timesplitter/data'
+let g:netrw_dirhist_3='/data/dev/project/game/timesplitter/src'
+let g:netrw_dirhist_4='/data/dev/project/game/timesplitter'
+let g:netrw_dirhist_5='/data/dev/project/game/timesplitter/data'
+let g:netrw_dirhist_6='/data/dev/project/game/timesplitter/data/shader'

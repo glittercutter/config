@@ -1,0 +1,9 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=1448
+
+Many color schemes have colors that have a medium to high contrast.  A higher contrast makes the text stand out more against the background.
+
+I personally don't like high contrast in my text.  I find it distracting, and it bothers my eyes after looking at it for a long time.  It's especially distracting when the colors have a varying degree of contrast-ness.
+
+So, I worked to find the best low-contrast colors that are still distinguishable from each other.  High contrast is still there if it's something important, like an error, or if I never changed the default because it never shows up in the things I do.
+
+Hope you like them!
