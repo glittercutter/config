@@ -20,9 +20,7 @@ sy()
 
 path="nix"
 sy "$HOME/.config/gtk-3.0/settings.ini"
-sy "$HOME/.config/herbstluftwm/autostart"
-sy "$HOME/.config/ranger/apps.py"
-sy "$HOME/.config/ranger/rc.conf"
+sy "$HOME/.config/herbstluftwm"
 sy "$HOME/.colours"
 sy "$HOME/.zshrc"
 sy "$HOME/.gtkrc-2.0"
@@ -32,3 +30,4 @@ sy "$HOME/.xinitrc"
 
 path="vim"
 sy "$HOME/.vimrc"
+sy "$HOME/.vim"

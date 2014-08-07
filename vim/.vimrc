@@ -1,23 +1,26 @@
 call pathogen#infect()
 call pathogen#helptags()
 
-" *** Settings ***
+" ================================
+" Settings
+" ================================
+
 set nocompatible
 set hlsearch
-set scrolloff=3                 " keep at least 3 lines above/below
-set sidescrolloff=5             " keep at least 5 lines left/right
-set backspace=indent,eol,start  " backspace over all kinds of things
+set scrolloff=3                 " Keep at least 3 lines above/below
+set sidescrolloff=5             " Keep at least 5 lines left/right
+set backspace=indent,eol,start  " Backspace over all kinds of things
 set whichwrap+=<,>,h,l
-set linebreak                   " wrap at 'breakat' instead of last char
+set linebreak                   " Wrap at 'breakat' instead of last char
 set undolevels=200
-set updatecount=100             " switch every 100 chars
-set history=50                  " keep 50 lines of command line history
-set ttyfast                     " we have a fast terminal
-set magic                       " Enable the "magic"
+set updatecount=100             " Switch every 100 chars
+set history=50                  " Command line history
+set ttyfast
+set magic
 set noruler
-set showcmd                     " display incomplete commands
-set incsearch                   " do incremental searching
-set number                      " show line number
+set showcmd                     " Display incomplete commands
+set incsearch
+set number                      " Show line number
 set lazyredraw                  " Don't redraw while executing macros 
 set so=7                        " Set 7 lines to the curors - when moving vertical..
 set wildmenu                    " Turn on WiLd menu
@@ -47,97 +50,104 @@ filetype on                     " Enable filetype detection
 filetype indent on              " Enable filetype-specific indenting
 filetype plugin on              " Enable filetype-specific plugins
 
+setlocal cinoptions={0,:1s,g1s,t0,(0,=.5s
+setlocal cindent
 
-" *** NERDTree ***
-let NERDTreeWinPos="right"
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
-map <silent> <F12> :NERDTreeToggle<CR>
+" ================================
+" Mapping
+" ================================
 
-" *** Quickfix ***
-set errorfile="../gcc.err"
-set errorformat+=%f:%l:\ %m     " For MinGW
-nnoremap <F1> :cf<CR>
-nnoremap <F2> :cprev<CR>
-nnoremap <F3> :cnext<CR>
-
-" *** Mapping ***
 map ; :
 
-" Create new line above/below (opposite of Shift-J)
-nnoremap <C-J> o<Esc>k
-nnoremap <C-K> O<Esc>j
+" Create new line above/below (opposite of Shift-J), overide open manpage.
+nnoremap <S-J> o<Esc>k
+nnoremap <S-K> O<Esc>j
+
+" Wrapped lines goes down/up to next row, rather than next line in file.
+nnoremap j gj
+nnoremap k gk
 
 " Switch window
 nnoremap <C-L> <C-W>l
 nnoremap <C-H> <C-W>h
+nnoremap <C-J> <C-W>j
+nnoremap <C-K> <C-W>k
 
-" Resizing window with +/- keys (horizontal); / and * keys (vertical)
+" Resize window
 if bufwinnr(1)
-    map <kplus> <c-w>+
-    map <kminus> <c-w>-
-    map <kdivide> <c-w><
-    map <kmultiply> <c-w>>
+    map <LEFT> <c-w><
+    map <RIGHT> <c-w>>
+    map <UP> <c-w>+
+    map <DOWN> <c-w>-
 endif
 
-" Keep visual selection on indent
+" Keep visual selection after indenting
 vmap > >gv
 vmap < <gv
 
 " For quick recordings just type qq to start recording, then q to stop.
-" You don't have to worry about the name this way (you just named the recording 'q').
-" Now, to play back the recording you just type Q. This will redefine the standard meaning of 'Q',
-" but all that does is enter "Ex" mode which I can live without.
 nnoremap Q @q
 
-" To copy text to the end-of-line, you can press y$ or you can use the following and press Y instead. 
-" This mapping sets up Y to be consistent with the C and D operators, which act from the cursor to the end of the line. 
-" The default behavior of Y is to yank the whole line.
+" Yank from the cursor to the end of the line, to be consistent with C and D.
 nnoremap Y y$
 
 " Toggle src/header
 map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 
-" Tired of clearing highlighted searches by searching for ÅgldsfhjkhgakjksÅh? Use this:
-nmap <silent> ,/ :nohlsearch<CR>
+" Sane indentation on pastes
+set pastetoggle=<F10> 
 
-" Show attribute of text under the cursor (for colorscheme)
-map <F11> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+" Quickfix
+set errorfile="/tmp/quickfix.err"
+"set errorformat+=%f:%l:\ %m     " For MinGW
+nnoremap <F1> :cf /tmp/quickfix.err<CR>
+nnoremap <F2> :cprev<CR>
+nnoremap <F3> :cnext<CR>
 
-" Copy/paste to X
-"vmap <C-c> y: call system("xclip -i -selection clipboard", getreg("\""))<CR><CR>
-"nmap <C-v> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
-"imap <C-v> <Esc><C-v>a
+" Tagbar
+nmap <F11> :TagbarToggle<CR>
+let g:tagbar_compact = 1
+let g:tagbar_indent = 1
 
-" Spell check
-map <F5> <Esc>:setlocal spell spelllang=fr<CR>
-map <F6> <Esc>:setlocal spell spelllang=en_gb<CR>
-map <F7> z=
-map <F8> <Esc>:setlocal nospell<CR>
+" ================================
+" Plugins
+" ================================
 
-" *** Misc. ***
-function Transparent()
-    hi Normal ctermbg=none
-endfunction
+" NERDTree
+let NERDTreeWinPos="right"
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
 
-" Powerline
+map <silent> <F12> :NERDTreeToggle<CR>
+
+" powerline
 set laststatus=2 " Always show the statusline
-let g:Powerline_symbols="unicode"
+let g:Powerline_symbols = "compatible"
 
-" vim-indent-guide plugin
-let g:indent_guides_auto_colors = 0
-let g:indent_guides_guide_size = 3
-let g:indent_guides_start_level = 2
-"call IndentGuidesEnable
+" ================================
+" Misc
+" ================================
 
-" C operator highlight
-"if exists("*CSyntaxAfter")
-    "call CSyntaxAfter()
-"endif
-"
-" C++11
+" Use X11 clipboard
+set clipboard=unnamed
+
+" Autoreload config while editing
+augroup myvimrc
+    au!
+    au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
+augroup END
+
+" Open those extensions as zip file.
+au BufReadCmd *.odt,*.ott,*.ods,*.ots,*.odp,*.otp,*.odg,*.otg,*.xpi call zip#Browse(expand("<amatch>"))
+
+" Syntax
 au BufNewFile,BufRead *.cpp set syntax=cpp11
+au BufRead,BufNewFile *.as set syntax=cpp "angelscript
 
 colorscheme colorshot
-"colorscheme zenburn
-"call Transparent()
+"colorscheme classytouch
+
+" Show attribute of text under the cursor (for colorscheme)
+"map <F11> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
+

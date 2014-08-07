@@ -1,45 +1,68 @@
 #!/bin/sh
-#
-# ~/.xinitrc
-#
-# Executed by startx (run your window manager from here)
 
-if [ -d /etc/X11/xinit/xinitrc.d ]; then
-  for f in /etc/X11/xinit/xinitrc.d/*; do
-    [ -x "$f" ] && . "$f"
-  done
-  unset f
+userresources=$HOME/.Xresources
+usermodmap=$HOME/.Xmodmap
+sysresources=/etc/X11/xinit/.Xresources
+sysmodmap=/etc/X11/xinit/.Xmodmap
+
+# merge in defaults and keymaps
+
+if [ -f $sysresources ]; then
+    xrdb -merge $sysresources
 fi
 
-# Load resources
+if [ -f $sysmodmap ]; then
+    xmodmap $sysmodmap
+fi
+
+if [ -f "$userresources" ]; then
+    xrdb -merge "$userresources"
+fi
+
+if [ -f "$usermodmap" ]; then
+    xmodmap "$usermodmap"
+fi
+
+# start some nice programs
+
+#if [ -d /etc/X11/xinit/xinitrc.d ] ; then
+	#for f in /etc/X11/xinit/xinitrc.d/* ; do
+		#[ -x "$f" ] && . "$f"
+
+	#done
+	#unset f
+#fi
+
+sh ~/.screenlayout/dual_portrait.sh
+
+# Programs
+redshift -l 45.703182:-73.644361 -t 5500:4000 & # Protect my eye
+unclutter &
+xcompmgr &
+urxvtd -q -f -o &
+
+~/utils/random_wall.sh
+~/utils/on_idle.py -loop -i 120 ~/utils/random_wall.sh &
+noppoo_choc_mini_linux &
+
 xrdb -merge ~/.Xresources
 
-# Key mapping
-xmodmap ~/.Xmodmap
+# Font path
+xset +fp /usr/share/fonts/local
+xset +fp /usr/share/fonts/misc
+xset +fp /usr/share/fonts/artwiz-fonts
+xset fp rehash
+# Prevent screen from blanking
+xset -dpms; xset s off
 
-# Keyboard repeat
-xset r rate 150 25
+xmodmap ~/.Xmodmap # Key map
+xset r rate 150 25 # Key repeat
 
-# Wallpaper
-#fbsetbg /data/img/wall/wallpaper-972417_contrast2.png
-fbsetbg /data/img/wall/113576_contrast.png
+#run systemd as user instance
+systemd --user &
 
-# Deamon for X
-exec urxvtd -q -f -o & # stop with the server
-#exec /usr/lib/notification-daemon-1.0/notification-daemon start &
+$HOME/.config/herbstluftwm/start_with_rule.sh &
+exec ck-launch-session dbus-launch herbstluftwm
 
-# Hide cursor when mouse is idle
-exec unclutter -visible -root &
-
-exec xcompmgr -fF -D20 -I 0.15 -O 0.05 &
-
-exec conky &
-
-# WM
 #exec fluxbox
-exec herbstluftwm
-#exec enlightenment_start
-#exec compiz ccp
-
-# Session ended, cleanup
-#exec /usr/lib/notification-daemon-1.0/notification-daemon stop &
+#exec i3

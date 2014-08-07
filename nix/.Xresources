@@ -8,23 +8,41 @@ Xft.hinting:    true
 Xft.autohint:   false
 Xft.hintstyle:  hintfull
 
-Xcursor.theme: Vanilla-DMZ-AA
+Xcursor.theme: OpenZone_Black_Slim 
 Xcursor.size: 22
 
 ! URxvt
-#include "/home/glittercutter/.colours/Colorshot"
-URxvt.font:xft:Termsyn:pixelsize=12:style=Regular
-URxvt.boldFont:xft:Termsyn:pixelsize=12:style=Bold
+!#include "/home/glit/.colours/tango1"
+!#include "/home/glit/.colours/classy_touch"
+#include "/home/glit/.colours/monoscheme"
+
+URxvt.font:-*-tamsyn-medium-*-*-*-14-*-*-*-*-*-*-*
+URxvt.boldFont:-*-tamsyn-bold-*-*-*-14-*-*-*-*-*-*-*
+!URxvt.font:-*-bitocra-medium-*-*-*-*-*-*-*-*-*-*-*
+!URxvt.boldFont:-*-bitocra-bold-*-*-*-*-*-*-*-*-*-*-*
+
+!URxvt.font:xft:Termsyn:pixelsize=12:style=Regular
+!URxvt.boldFont:xft:Termsyn:pixelsize=12:style=Bold
+!URxvt.font:-gohu-gohufont-medium-r-normal-*-13-*-*-*-*-*-*-*
+!URxvt.boldFont:-gohu-gohufont-bold-r-normal-*-13-*-*-*-*-*-*-*
+!URxvt.font:-*-ohsnap-medium-r-normal-*-14-*-*-*-*-*-*-*
+!URxvt.boldFont:-*-ohsnap-bold-r-normal-*-14-*-*-*-*-*-*-*
 
 ! On the fly font changing
-URxvt.keysym.C-plus: command:\033]50;xft:Termsyn:pixelsize=17,xft:IPAMonaGothic:antialias=false,xft:Symbola,xft:LastResort\007
-URxvt.keysym.C-minus: command:\033]50;xft:Termsyn:pixelsize=12,xft:IPAMonaGothic:antialias=false,xft:Symbola,xft:LastResort\007
+URxvt.keysym.C-plus: command:\033]50;-*-tamsyn-medium-*-*-*-14-*-*-*-*-*-*-*,xft:IPAMonaGothic:antialias=false,xft:Symbola,xft:LastResort\007
+URxvt.keysym.C-minus: command:\033]50;-*-tamsyn-medium-*-*-*-9-*-*-*-*-*-*-*,xft:IPAMonaGothic:antialias=false,xft:Symbola,xft:LastResort\007
+!URxvt.keysym.C-plus: command:\033]50;-gohu-gohufont-medium-*-*-*-14-*-*-*-*-*-*-*,xft:IPAMonaGothic:antialias=false,xft:Symbola,xft:LastResort\007
+!URxvt.keysym.C-minus: command:\033]50;-gohu-gohufont-medium-*-*-*-11-*-*-*-*-*-*-*,xft:IPAMonaGothic:antialias=false,xft:Symbola,xft:LastResort\007
 
 !URxvt*font: xft:Dina: pixelsize=10
 URxvt*xftAntialias: false
 
-URxvt*transparent: true
-URxvt*tintColor: #dddddd
+! True transparency
+urxvt*depth: 32
+urxvt*background: rgba:0000/0000/0000/1100
+
+!URxvt*transparent: true
+!URxvt*shading: 90
 
 URxvt*cursorBlink:true
 URxvt*scrollBar: off

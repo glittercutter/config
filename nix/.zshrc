@@ -1,12 +1,14 @@
-# Oh My Zsh options
-zstyle ':omz:editor' keymap 'vi'
-zstyle ':omz:editor' dot-expansion 'yes'
-zstyle ':omz:*:*' case-sensitive 'no'
-zstyle ':omz:*:*' color 'yes'
-zstyle ':omz:terminal' auto-title 'no'
-zstyle ':omz:load' plugin 'archive' 'git'
-zstyle ':omz:prompt' theme 'sorin'
-source "$HOME/.oh-my-zsh/init.zsh"
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+# End of lines configured by zsh-newuser-install
+# The following lines were added by compinstall
+zstyle :compinstall filename '/home/glit/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
 
 ##################################################################
 # Aliases
@@ -17,10 +19,10 @@ alias -s org=$BROWSER
 alias -s php=$BROWSER
 alias -s com=$BROWSER
 alias -s net=$BROWSER
-alias -s png=geeqie
-alias -s jpg=geeqie
-alias -s jpeg=geeqie
-alias -s gif=geeqie
+alias -s png=feh
+alias -s jpg=feh
+alias -s jpeg=feh
+alias -s gif=feh
 alias -s sxw=soffice
 alias -s doc=soffice
 alias -s gz='aunpack'
@@ -40,16 +42,14 @@ alias -s flv='mplayer'
 alias -s avi='mplayer'
 alias -s mp4='mplayer'
 alias -s wmv='mplayer'
-alias -s pdf='zathura'
+alias -s pdf='evince'
 
 # Normal aliases
-alias ls='ls --color=auto -F'
-alias la='ls --color=auto -AF'
-alias ll='ls --color=auto -lphF'
-alias lla='ls --color=auto -lAphF'
-alias lsd='ls -ld *(-/DN)'
-alias lsa='ls -ld .*'
+alias copy='rsync -aP'
+alias ls='/usr/bin/vendor_perl/ls++'
+alias la='/usr/bin/vendor_perl/ls++ -AF'
 alias grep="grep --color -n"
+alias rename="rename -v"
 alias mkdir="mkdir -p"
 alias f='find | grep'
 alias i='urxvtc &'
@@ -58,18 +58,29 @@ alias vi='vim'
 alias sv='sudo vim'
 alias iv='urxvtc -e vim &'
 alias fm='ranger'
-alias wifi='sudo /utils/wifi.sh'
+alias nested_fluxbox='sudo /utils/nested_fluxbox.sh'
 alias aurget='cd ~/aur; aurget'
 alias pacman='sudo pacman'
-alias reboot='sudo reboot'
-alias halt='sudo halt'
+alias netcfg='sudo netcfg'
+alias halt='shutdown'
 alias xp='xprop | grep "WM_WINDOW_ROLE\|WM_CLASS" && echo "WM_CLASS(STRING) = \"NAME\", \"CLASS\""'
+alias make='make -j12 2>&1 | tee /tmp/quickfix.err'
+alias g++='g++ 2>&1 | tee /tmp/quickfix.err'
+alias gcc='gcc 2>&1 | tee /tmp/quickfix.err'
+alias quickfix='2>&1 | tee /tmp/quickfix.err'
+alias synctime='sudo /home/glit/utils/synctime.sh'
+alias du='du -h'
+alias df='df -h'
+alias mk='make -j12'
+alias connect='sudo ~/.utils/connect_to_network.sh midget_in_space'
+alias brasero='dbus-launch brasero'
+alias ssh='TERM=linux ssh'
+alias gvim='urxvt -e vim'
+alias dev='~/utils/start_dev.sh'
+alias dus='~/utils/dus.sh'
+alias fileserve='python2 -m SimpleHTTPServer 8000'
 
-# command L equivalent to command |less
-alias -g L='|less' 
+# cd
+alias minimal='cd /data/dev/project/game/minimal_fps/build_nix_debug; urxvt -cd /data/dev/project/game/minimal_fps/src -e vim &'
 
-# command S equivalent to command &> /dev/null &
-alias -g S='&> /dev/null &'
-
-# tty colour
-/home/glittercutter/.colours/Colorshot_tty
+source /home/glit/.nicoulaj.zsh-theme
